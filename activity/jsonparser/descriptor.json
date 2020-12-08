@@ -1,0 +1,33 @@
+{
+    "name": "json-parser",
+    "version": "1.0.0",
+    "type": "flogo:activity",
+    "title": "JSON Parser",
+    "description": "This activity parses JSON string and returns a JSON object",
+    "author": "Yueming Xu",
+    "ref": "github.com/open-dovetail/dovetail-contrib/activity/jsonparser",
+    "homepage": "http://github.com/open-dovetail/dovetail-contrib/tree/master/activity/jsonparser",
+    "settings": [],
+    "inputs": [{
+        "name": "data",
+        "type": "string",
+        "required": true,
+        "description": "JSON string of a serialized object"
+    }],
+    "outputs": [{
+            "name": "code",
+            "type": "integer",
+            "description": "status code, e.g., 200 if successful"
+        },
+        {
+            "name": "message",
+            "type": "string",
+            "description": "error message if failed to parse the JSON string"
+        },
+        {
+            "name": "result",
+            "type": "object",
+            "description": "JSON object unmarshalled from the input string"
+        }
+    ]
+}

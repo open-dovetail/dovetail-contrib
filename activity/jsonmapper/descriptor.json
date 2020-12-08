@@ -1,0 +1,33 @@
+{
+    "name": "json-mapper",
+    "version": "1.0.0",
+    "type": "flogo:activity",
+    "title": "JSON Mapper",
+    "description": "This activity creates JSON string by mapping data in the flow scope",
+    "author": "Yueming Xu",
+    "ref": "github.com/open-dovetail/dovetail-contrib/activity/jsonmapper",
+    "homepage": "http://github.com/open-dovetail/dovetail-contrib/tree/master/activity/jsonmapper",
+    "settings": [],
+    "inputs": [{
+        "name": "data",
+        "type": "object",
+        "required": true,
+        "description": "JSON object with fields mapped from data available in the flow"
+    }],
+    "outputs": [{
+            "name": "code",
+            "type": "integer",
+            "description": "status code, e.g., 200 if successful"
+        },
+        {
+            "name": "message",
+            "type": "string",
+            "description": "error message if failed to create JSON string"
+        },
+        {
+            "name": "result",
+            "type": "string",
+            "description": "returned JSON string after successful mapper evaluation"
+        }
+    ]
+}
