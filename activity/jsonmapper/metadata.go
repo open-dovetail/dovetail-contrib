@@ -6,8 +6,8 @@ import (
 
 // Settings of the activity
 type Settings struct {
-	CompositeKeys map[string][]string `md:"compositeKeys"`
-	Name          string              `md:"name"`
+	CompositeKeys map[string]interface{} `md:"compositeKeys"`
+	Name          string                 `md:"name"`
 }
 
 // Input of the activity

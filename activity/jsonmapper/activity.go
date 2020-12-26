@@ -42,7 +42,7 @@ func (a *Activity) Metadata() *activity.Metadata {
 
 // Eval implements activity.Activity.Eval
 func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
-	logger.Infof("activity setting name %s keys %v", a.name, .compositeKeys)
+	logger.Infof("activity setting name %s keys %v", a.name, a.compositeKeys)
 	// check input args
 	input := &Input{}
 	if err = ctx.GetInputObject(input); err != nil {
