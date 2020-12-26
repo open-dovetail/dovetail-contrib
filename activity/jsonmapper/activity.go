@@ -22,6 +22,8 @@ func init() {
 type Activity struct {
 	compositeKeys map[string]interface{}
 	name          string
+	key           string
+	attributes    []string
 }
 
 // New creates a new Activity
@@ -32,7 +34,24 @@ func New(ctx activity.InitContext) (activity.Activity, error) {
 		ctx.Logger().Errorf("failed to configure activity %v\n", err)
 		return nil, err
 	}
-	return &Activity{compositeKeys: s.CompositeKeys, name: s.Name}, nil
+	mapping, ok := s.CompositeKeys["mapping"].(map[string]interface{})
+	var ck string
+	var attrs []string
+	if ok {
+		for k, v := range mapping {
+			ck = k
+			values := v.([]interface{})
+			for _, f := range values {
+				attrs = append(attrs, f.(string))
+			}
+		}
+	}
+	return &Activity{
+		compositeKeys: s.CompositeKeys,
+		name:          s.Name,
+		key:           ck,
+		attributes:    attrs,
+	}, nil
 }
 
 // Metadata implements activity.Activity.Metadata
@@ -42,7 +61,7 @@ func (a *Activity) Metadata() *activity.Metadata {
 
 // Eval implements activity.Activity.Eval
 func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
-	logger.Infof("activity setting name %s keys %v", a.name, a.compositeKeys)
+	logger.Infof("activity setting name %s keys %v keyName %s, keyAttrs: %v", a.name, a.compositeKeys, a.key, a.attributes)
 	// check input args
 	input := &Input{}
 	if err = ctx.GetInputObject(input); err != nil {
