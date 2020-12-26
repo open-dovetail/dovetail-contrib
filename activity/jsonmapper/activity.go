@@ -83,7 +83,7 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 		return false, err
 	}
 
-	output := &Output{Code: 200, Message: fmt.Sprintf("%s - %v", a.name, a.compositeKeys), Result: string(result)}
+	output := &Output{Code: 200, Message: fmt.Sprintf("%s - %v - %s", a.name, a.compositeKeys, a.key), Result: string(result)}
 	ctx.SetOutputObject(output)
 	return true, nil
 }
