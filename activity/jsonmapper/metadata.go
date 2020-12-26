@@ -6,8 +6,7 @@ import (
 
 // Settings of the activity
 type Settings struct {
-	CompositeKeys map[string]interface{} `md:"compositeKeys"`
-	Name          string                 `md:"name"`
+	Serialize bool `md:"serialize"`
 }
 
 // Input of the activity
@@ -17,9 +16,9 @@ type Input struct {
 
 // Output of the activity
 type Output struct {
-	Code    int    `md:"code"`
-	Message string `md:"message"`
-	Result  string `md:"result"`
+	Code    int         `md:"code"`
+	Message string      `md:"message"`
+	Result  interface{} `md:"result"`
 }
 
 // ToMap converts activity input to a map
@@ -56,7 +55,7 @@ func (o *Output) FromMap(values map[string]interface{}) error {
 	if o.Message, err = coerce.ToString(values["message"]); err != nil {
 		o.Message = ""
 	}
-	if o.Result, err = coerce.ToString(values["result"]); err != nil {
+	if o.Result, err = coerce.ToAny(values["result"]); err != nil {
 		return err
 	}
 	return nil

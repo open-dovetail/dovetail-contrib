@@ -29,6 +29,7 @@ func TestCreate(t *testing.T) {
 
 func TestEval(t *testing.T) {
 	act := &Activity{}
+	act.serialize = true
 	tc := test.NewActivityContext(act.Metadata())
 	input := &Input{Data: map[string]interface{}{"two": 2, "one": 1}}
 	err := tc.SetInputObject(input)

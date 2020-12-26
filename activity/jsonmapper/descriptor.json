@@ -8,16 +8,10 @@
     "ref": "github.com/open-dovetail/dovetail-contrib/activity/jsonmapper",
     "homepage": "http://github.com/open-dovetail/dovetail-contrib/tree/master/activity/jsonmapper",
     "settings": [{
-            "name": "compositeKeys",
-            "type": "object",
-            "description": "test config for map[string][]string, e.g. {index1: [attr1,attr2]}"
-        },
-        {
-            "name": "name",
-            "type": "string",
-            "description": "test config name"
-        }
-    ],
+        "name": "serialize",
+        "type": "boolean",
+        "description": "true if serialize output to string"
+    }],
     "inputs": [{
         "name": "data",
         "type": "object",
@@ -36,8 +30,8 @@
         },
         {
             "name": "result",
-            "type": "string",
-            "description": "returned JSON string after successful mapper evaluation"
+            "type": "any",
+            "description": "resulting JSON object or serialized JSON string depending on the setting"
         }
     ]
 }
