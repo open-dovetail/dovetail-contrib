@@ -2,8 +2,10 @@ package jsonmapper
 
 import (
 	"encoding/json"
+	"fmt"
 
 	"github.com/project-flogo/core/activity"
+	"github.com/project-flogo/core/data/metadata"
 	"github.com/project-flogo/core/support/log"
 )
 
@@ -18,11 +20,19 @@ func init() {
 
 // Activity is a stub for executing Hyperledger Fabric put operations
 type Activity struct {
+	compositeKeys map[string]interface{}
+	name          string
 }
 
 // New creates a new Activity
 func New(ctx activity.InitContext) (activity.Activity, error) {
-	return &Activity{}, nil
+	s := &Settings{}
+	ctx.Logger().Infof("Create activity with InitContxt settings %v\n", ctx.Settings())
+	if err := metadata.MapToStruct(ctx.Settings(), s, true); err != nil {
+		ctx.Logger().Errorf("failed to configure activity %v\n", err)
+		return nil, err
+	}
+	return &Activity{compositeKeys: s.CompositeKeys, name: s.Name}, nil
 }
 
 // Metadata implements activity.Activity.Metadata
@@ -32,6 +42,7 @@ func (a *Activity) Metadata() *activity.Metadata {
 
 // Eval implements activity.Activity.Eval
 func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
+	logger.Infof("activity setting name %s keys %v", a.name, .compositeKeys)
 	// check input args
 	input := &Input{}
 	if err = ctx.GetInputObject(input); err != nil {
@@ -56,7 +67,7 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 		return false, err
 	}
 
-	output := &Output{Code: 200, Message: "", Result: string(result)}
+	output := &Output{Code: 200, Message: fmt.Sprintf("%s - %v", a.name, a.compositeKeys), Result: string(result)}
 	ctx.SetOutputObject(output)
 	return true, nil
 }

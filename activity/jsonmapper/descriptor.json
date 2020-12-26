@@ -7,7 +7,17 @@
     "author": "Yueming Xu",
     "ref": "github.com/open-dovetail/dovetail-contrib/activity/jsonmapper",
     "homepage": "http://github.com/open-dovetail/dovetail-contrib/tree/master/activity/jsonmapper",
-    "settings": [],
+    "settings": [{
+            "name": "compositeKeys",
+            "type": "object",
+            "description": "test config for map[string][]string, e.g. {index1: [attr1,attr2]}"
+        },
+        {
+            "name": "name",
+            "type": "string",
+            "description": "test config name"
+        }
+    ],
     "inputs": [{
         "name": "data",
         "type": "object",
