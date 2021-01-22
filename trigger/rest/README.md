@@ -7,7 +7,7 @@ weight: 4706
 
 This trigger provides your flogo application the ability to start an action via REST over HTTP
 
-This is a fork from <https://github.com/open-dovetail/dovetail-contrib/tree/master/trigger/rest>
+This is a fork from <https://github.com/project-flogo/contrib/tree/master/trigger/rest>
 
 This version updated the [descriptor.json](./descriptor.json), so app models can be imported to Flogo Enterprise when app properties are used in trigger settings.
 
