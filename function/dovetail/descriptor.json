@@ -1,0 +1,21 @@
+{
+  "name": "dovetail",
+  "type": "flogo:function",
+  "version": "0.0.1",
+  "title": "Dovetail utility functions",
+  "description": "Utility functions used by Dovetail",
+  "ref": "github.com/open-dovetail/dovetail-contrib/function/dovetail",
+  "homepage": "https://github.com/open-dovetail/dovetail-contrib/tree/master/function/dovetail",
+  "functions": [{
+    "name": "httpUser",
+    "description": "Returns username in HTTP request header when basic authentication is used",
+    "example": "dovetail.httpUser(headers) => username",
+    "args": [{
+      "name": "headers",
+      "type": "params"
+    }],
+    "return": {
+      "type": "string"
+    }
+  }]
+}
